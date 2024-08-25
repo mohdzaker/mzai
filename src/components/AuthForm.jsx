@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
@@ -54,16 +54,16 @@ const AuthForm = ({ formFor }) => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-black flex justify-center items-center">
+    <main className="w-full min-h-screen bg-black flex justify-center items-center px-4 sm:px-6 lg:px-8">
       <form
-        className="p-8 bg-white rounded-lg shadow-lg w-full max-w-md"
+        className="p-8 bg-white rounded-lg shadow-lg w-full max-w-md mx-auto"
         onSubmit={handleSubmit}
       >
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-serif text-black mb-2">
+          <h1 className="text-3xl sm:text-4xl font-serif text-black mb-2">
             {formFor === 'Signup' ? 'Create Your Account' : 'Sign In to Your Account'}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             {formFor === 'Signup'
               ? 'Join us and start your journey with Mz AI!'
               : 'Welcome back! Please log in to continue.'}
@@ -176,7 +176,7 @@ const AuthForm = ({ formFor }) => {
         </button>
 
         <div className="text-center mb-4">
-          <p className="text-gray-600 mb-4">Or</p>
+          <p className="text-gray-600 text-sm sm:text-base mb-4">Or</p>
           <Link
             href="#"
             className="flex items-center justify-center border border-gray-300 rounded px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-200"
@@ -213,14 +213,14 @@ const AuthForm = ({ formFor }) => {
 
         <div className="mt-6 text-center">
           {formFor === 'Signup' ? (
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm sm:text-base">
               Already have an account?{' '}
               <Link href="/signin" className="text-black font-bold hover:underline">
                 Sign In
               </Link>
             </p>
           ) : (
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm sm:text-base">
               Don&apos;t have an account?{' '}
               <Link href="/signup" className="text-black font-bold hover:underline">
                 Sign Up
