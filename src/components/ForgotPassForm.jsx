@@ -26,7 +26,7 @@ const ForgotPasswordForm = () => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-black flex justify-center items-center px-4 sm:px-6 lg:px-8">
+    <main className="w-full min-h-screen bg-black flex justify-center items-center px-4 sm:px-6 lg:px-8 sm:my-3">
       <form
         className="p-8 bg-white rounded-lg shadow-lg w-full max-w-md"
         onSubmit={handleSubmit}
