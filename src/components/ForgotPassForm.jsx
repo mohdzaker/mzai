@@ -50,7 +50,7 @@ const ForgotPasswordForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className={`w-full px-4 py-2 border rounded text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-2 border rounded outline-none text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
           />
           {error && <p className="text-red-500 text-xs italic mt-1">{error}</p>}
           {success && <p className="text-green-500 text-xs italic mt-1">{success}</p>}

@@ -82,7 +82,7 @@ const AuthForm = ({ formFor }) => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your full name"
-              className={`w-full px-4 py-2 border rounded text-gray-800 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full px-4 py-2 border rounded outline-none text-gray-800 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors.name && <p className="text-red-500 text-xs italic mt-1">{errors.name}</p>}
           </div>
@@ -99,7 +99,7 @@ const AuthForm = ({ formFor }) => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className={`w-full px-4 py-2 border rounded text-gray-800 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-2 border rounded outline-none text-gray-800 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
           />
           {errors.email && <p className="text-red-500 text-xs italic mt-1">{errors.email}</p>}
         </div>
@@ -115,7 +115,7 @@ const AuthForm = ({ formFor }) => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Create a password"
-            className={`w-full px-4 py-2 border rounded text-gray-800 pr-12 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full px-4 py-2 border rounded outline-none text-gray-800 pr-12 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
           />
           <button
             type="button"
@@ -143,7 +143,7 @@ const AuthForm = ({ formFor }) => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm your password"
-              className={`w-full px-4 py-2 border rounded text-gray-800 pr-12 ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full px-4 py-2 border rounded outline-none text-gray-800 pr-12 ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
             />
             <button
               type="button"
