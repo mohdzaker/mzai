@@ -101,28 +101,16 @@ const AuthForm = ({ formFor }) => {
     e.preventDefault();
     if (validate()) {
       try {
-        if (formFor === 'Signup') {
-          setLoading(true)
-          const res = await register(formData);
-          if (res.status == 200) {
-            setLoading(false)
-            toast.success(res.message);
-          } else {
-            setLoading(false)
-            toast.error(res.message);
-          }
-        } else if (formFor === 'Signin') {
-          setLoading(true)
-          const res = await login(formData);
-          if (res.status == 200) {
-            setLoading(false)
-            toast.success(res.message);
-          } else {
-            setLoading(false)
-            toast.error(res.message);
-          }
+        setLoading(true);
+        const res = formFor === 'Signup' ? await register(formData) : await login(formData);
+        setLoading(false);
+        if (res.status === 200) {
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
         }
       } catch (error) {
+        setLoading(false);
         console.error('Error during form submission:', error);
       }
     }
@@ -183,26 +171,25 @@ const AuthForm = ({ formFor }) => {
           <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
-          <input
-            id="password"
-            name="password"
-            type={showPassword ? 'text' : 'password'}
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Create a password"
-            className={`w-full px-4 py-2 border rounded outline-none text-gray-800 pr-12 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 mt-6"
-          >
-            {showPassword ? (
-              <FaEyeSlash className="text-gray-500" />
-            ) : (
-              <FaEye className="text-gray-500" />
-            )}
-          </button>
+          <div className="relative">
+            <input
+              id="password"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Create a password"
+              className={`w-full px-4 py-2 border rounded outline-none text-gray-800 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+              style={{ top: '50%', transform: 'translateY(-50%)' }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
           {errors.password && <p className="text-red-500 text-xs italic mt-1">{errors.password}</p>}
         </div>
 
@@ -211,26 +198,25 @@ const AuthForm = ({ formFor }) => {
             <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="confirmPassword">
               Confirm Password
             </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type={showConfirmPassword ? 'text' : 'password'}
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm your password"
-              className={`w-full px-4 py-2 border rounded outline-none text-gray-800 pr-12 ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
-            />
-            <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute inset-y-0 right-0 flex items-center px-3 mt-6"
-            >
-              {showConfirmPassword ? (
-                <FaEyeSlash className="text-gray-500" />
-              ) : (
-                <FaEye className="text-gray-500" />
-              )}
-            </button>
+            <div className="relative">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm your password"
+                className={`w-full px-4 py-2 border rounded outline-none text-gray-800 ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+                style={{ top: '50%', transform: 'translateY(-50%)' }}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             {errors.confirmPassword && <p className="text-red-500 text-xs italic mt-1">{errors.confirmPassword}</p>}
           </div>
         )}
