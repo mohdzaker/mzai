@@ -9,7 +9,7 @@ export async function POST(req) {
         await connectToDb();
         const { email, password } = await req.json();
 
-        if (!name || !email || !password) {
+        if (!email || !password) {
             return NextResponse.json({
                 status: 400,
                 message: "All fields are required!"
@@ -33,15 +33,20 @@ export async function POST(req) {
                 message: "Incorrect Password!"
             });
         }
-        const token = jwt.sign({email}, process.env.JWT_SECRET, {
-            expiresIn: "24h"
+        const token = await jwt.sign({email}, process.env.JWT_SECRET, {
+            expiresIn: "1d"
         });
 
-        return NextResponse.json({
+        const response = NextResponse.json({
             status: 200,
             message: "Signed in Successfully!",
-            token
         });
+
+        response.cookies.set("token", token, {
+            httpOnly: true
+        });
+
+        return response;
 
     } catch (error) {
         return NextResponse.json({

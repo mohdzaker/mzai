@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const register = async (formData) => {
   const url = '/api/register';
@@ -54,6 +55,7 @@ const login = async (formData) => {
 };
 
 const AuthForm = ({ formFor }) => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -105,7 +107,12 @@ const AuthForm = ({ formFor }) => {
         const res = formFor === 'Signup' ? await register(formData) : await login(formData);
         setLoading(false);
         if (res.status === 200) {
-          toast.success(res.message);
+          toast.success(res.message, {
+            autoClose: 2000,
+          });
+          setTimeout(() => {
+            formFor === "Signup"? router.push("/signin") : router.push("/dashboard");
+          }, 3000);
         } else {
           toast.error(res.message);
         }
@@ -231,9 +238,10 @@ const AuthForm = ({ formFor }) => {
 
         <button
           type="submit"
-          className="w-full bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-200 mb-4"
+          disabled={loading}
+          className={`w-full px-4 py-2 rounded transition duration-200 mb-4 ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}`}
         >
-          {formFor === 'Signup' ? 'Sign Up' : 'Log In'}
+          {loading ? 'Processing...' : (formFor === 'Signup' ? 'Sign Up' : 'Log In')}
         </button>
 
         <div className="mt-6 text-center">
