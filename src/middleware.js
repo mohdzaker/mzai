@@ -20,6 +20,7 @@ export const config = {
         "/",
         "/dashboard",
         "/signup",
-        "/signin"
+        "/signin",
+        "/chat/:path*"
     ]   
 }
