@@ -124,7 +124,7 @@ const AuthForm = ({ formFor }) => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-black flex justify-center items-center px-4 sm:px-6 lg:px-8">
+    <main className="w-full min-h-screen bg-[#121418] flex justify-center items-center px-4 sm:px-6 lg:px-8">
       <form
         className="p-8 bg-white rounded-lg shadow-lg w-full max-w-md mx-auto"
         onSubmit={handleSubmit}
@@ -239,7 +239,7 @@ const AuthForm = ({ formFor }) => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full px-4 py-2 rounded transition duration-200 mb-4 ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}`}
+          className={`w-full px-4 py-2 rounded transition duration-200 mb-4 ${loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#121418] text-white hover:bg-gray-800'}`}
         >
           {loading ? 'Processing...' : (formFor === 'Signup' ? 'Sign Up' : 'Log In')}
         </button>
